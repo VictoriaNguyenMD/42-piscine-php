@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/php 
 <?php
-print "Hello World";
+echo "Hello World";
 ?>
