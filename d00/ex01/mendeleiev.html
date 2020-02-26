@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<symbol>Period Table of Elements</symbol>
+	<style type="text/css">
+		h1 {
+			text-align: center;
+			font-size: 75px;
+		}
+		body {
+			background-color: #fffdf9;
+		}
+		.gridContainer {
+			display: grid;
+  grid-column-gap: .5vw;
+  grid-row-gap: .5vw;
+  padding-left: 0;
+			/* grid-template-columns: repeat(18, 1fr[col]);
+			grid-template-rows: repeat(10, 1fr[row]); */
+			/* grid-auto-flow: column;
+			justify-items: center;
+			align-items: center;
+			width: 80%;
+			margin: 3em auto;
+			border: 1px solid #000000;
+			background-color: #ffffff; */
+			/* display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  height: 4.5vw;
+  border-radius: 3px;
+  background: rgb(91, 194, 234);
+  font-weight: bold; */
+}
+		}
+		.gridContainer .nonmetals {
+			background-color: #912828;
+		}
+		.gridContainer .elements {
+			text-align: center;
+			background-color: #beebe9;
+		}
+
+		.gridContainer .elements .symbol {
+			font-size: 25px;
+			font-weight: bold;
+		}
+
+		footer {
+			color: black;
+			font-family: monospace;
+			font-style: italic;
+			font-size: 20px;
+			position: fixed;
+			bottom: 10px;
+			width: 98%;
+			text-align: right;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Periodic Table of Elements</h1>
+	<ol class="gridContainer">
+		<li class="hydrogen">
+			<abbr symbol="Hydrogen">H</abbr>
+		</li>
+		<li id="helium" class="noble-gas">
+			<abbr symbol="Helium">He</abbr>
+			<span>2</span>
+		</li>
+		<li class="alkali">
+			<abbr symbol="Lithium">Li</abbr>
+		</li>
+		<li class="alkaline">
+			<abbr symbol="Beryllium">Be</abbr>
+		</li>
+		<li id="boron" class="metalloid">
+			<abbr symbol="Boron">B</abbr>
+		</li>
+		<li class="polyatomic-non-metal">
+			<abbr symbol="Carbon">C</abbr>
+		</li>
+		<li class="diatomic-nonmetal">
+			<abbr symbol="Nitrogen">N</abbr>
+		</li>
+		<li class="diatomic-nonmetal">
+			<abbr symbol="Oxygen">O</abbr>
+		</li>
+		<li class="diatomic-nonmetal">
+			<abbr symbol="Fluorine">F</abbr>
+		</li>
+		<li class="noble-gas">
+			<abbr symbol="Neon">Ne</abbr>
+		</li>
+		<li class="alkali">
+			<abbr symbol="Sodium">Na</abbr>
+		</li>
+		<li class="alkaline">
+			<abbr symbol="Magnesium">Mg</abbr>
+		</li>
+		<li id="aluminium">
+			<abbr symbol="Aluminium">Al</abbr>
+		</li>
+		<li class="metalloid">
+			<abbr symbol="Silicon">Si</abbr>
+		</li>
+		<li class="polyatomic-non-metal">
+			<abbr symbol="Phosphorus">P</abbr>
+		</li>
+		<li class="polyatomic-non-metal">
+			<abbr symbol="Sulphur">S</abbr>
+		</li>
+		<li class="diatomic-nonmetal">
+			<abbr symbol="Chlorine">Cl</abbr>
+		</li>
+		<li class="noble-gas">
+			<abbr symbol="Argon">Ar</abbr>
+		</li>
+		<li class="alkali">
+			<abbr symbol="Potassium">K</abbr>
+		</li>
+		<li class="alkaline">
+			<abbr symbol="Calcium">Ca</abbr>
+		</li>
+		<li>
+			<abbr symbol="Scandium">Sc</abbr>
+		</li>
+		<li>
+			<abbr symbol="Titanium">Ti</abbr>
+		</li>
+		<li>
+			<abbr symbol="Vanadium">Ti</abbr>
+		</li>
+		<li>
+			<abbr symbol="Chromium">Cr</abbr>
+		</li>
+		<li>
+			<abbr symbol="Manganese">Mn</abbr>
+		</li>
+		<li>
+			<abbr symbol="Iron">Fe</abbr>
+		</li>
+		<li>
+			<abbr symbol="Cobalt">Co</abbr>
+		</li>
+		<li>
+			<abbr symbol="Nickel">Ni</abbr>
+		</li>
+		<li>
+			<abbr symbol="Copper">Cu</abbr>
+		</li>
+		<li>
+			<abbr symbol="Zinc">Zn</abbr>
+		</li>
+		<li>
+			<abbr symbol="Gallium">Ga</abbr>
+		</li>
+		<li class="metalloid">
+			<abbr symbol="Germanium">Ge</abbr>
+		</li>
+		<li class="metalloid">
+			<abbr symbol="Arsenic">As</abbr>
+		</li>
+		<li class="polyatomic-non-metal">
+			<abbr symbol="Selenium">Se</abbr>
+		</li>
+		<li class="diatomic-nonmetal">
+			<abbr symbol="Bromide">Br</abbr>
+		</li>
+		<li class="noble-gas">
+			<abbr symbol="Krypton">Kr</abbr>
+		</li>
+		<li class="alkali">
+			<abbr symbol="Rubidium">Rb</abbr>
+		</li>
+		<li class="alkaline">
+			<abbr symbol="Strontium">Sr</abbr>
+		</li>
+		<li>
+			<abbr symbol="Yttrium">Y</abbr>
+		</li>
+		<li>
+			<abbr symbol="Zirconium">Zr</abbr>
+		</li>
+		<li>
+			<abbr symbol="Niobium">Nb</abbr>
+		</li>
+		<li>
+			<abbr symbol="Molybdenum">Mo</abbr>
+		</li>
+		<li>
+			<abbr symbol="Technetium">Tc</abbr>
+		</li>
+		<li>
+			<abbr symbol="Ruthenium">Ru</abbr>
+		</li>
+		<li>
+			<abbr symbol="Rhodium">Ro</abbr>
+		</li>
+		<li>
+			<abbr symbol="Palladium">Pd</abbr>
+		</li>
+		<li>
+			<abbr symbol="Silver">Ag</abbr>
+		</li>
+		<li>
+			<abbr symbol="Cadmium">Cd</abbr>
+		</li>
+		<li>
+			<abbr symbol="Indium">In</abbr>
+		</li>
+		<li>
+			<abbr symbol="Tin">Sn</abbr>
+		</li>
+		<li class="metalloid">
+			<abbr symbol="Antimony">Sb</abbr>
+		</li>
+		<li class="metalloid">
+			<abbr symbol="Tellurium">Te</abbr>
+		</li>
+		<li class="diatomic-nonmetal">
+			<abbr symbol="Iodine">I</abbr>
+		</li>
+		<li class="noble-gas">
+			<abbr symbol="Xenon">Xe</abbr>
+		</li>
+		<li class="alkali">
+			<abbr symbol="Caesium">Cs</abbr>
+		</li>
+		<li class="alkaline">
+			<abbr symbol="Barium">Ba</abbr>
+		</li>
+		<li class="lanthanide">
+			<abbr symbol="Lanthanum">La</abbr>
+		</li>
+		<li id="cerium" class="lanthanide">
+			 <abbr symbol="Cerium">Ce</abbr>
+		</li>
+		<li class="lanthanide">
+			<abbr symbol="Praseodymium">Pr</abbr>
+		</li>
+		<li class="lanthanide">
+			<abbr symbol="Neodymium">Nd</abbr>
+		</li>
+		<li class="lanthanide">
+			<abbr symbol="Promethium">Pm</abbr>
+		</li>
+		<li class="lanthanide">
+			<abbr symbol="Samarium">Sm</abbr>
+		</li>
+		<li class="lanthanide">
+			<abbr symbol="Europium">Eu</abbr>
+		</li>
+		<li class="lanthanide">
+			<abbr symbol="Gadolinium">Gd</abbr>
+		</li>
+		<li class="lanthanide">
+			<abbr symbol="Terbium">Td</abbr>
+		</li>
+		<li class="lanthanide">
+			<abbr symbol="Dysprosium">Dy</abbr>
+		</li>
+		<li class="lanthanide">
+			<abbr symbol="Holmium">Ho</abbr>
+		</li>
+		<li class="lanthanide">
+			<abbr symbol="Erbium">Er</abbr>
+		</li>
+		<li class="lanthanide">
+			<abbr symbol="Thulium">Tm</abbr>
+		</li>
+		<li class="lanthanide">
+			<abbr symbol="Ytterbium">Yb</abbr>
+		</li>
+		<li class="lanthanide">
+			<abbr symbol="Lutetium">Lu</abbr>
+		</li>  
+		<li id="hafnium">
+			<abbr symbol="Hafnium">Hf</abbr>
+		</li>
+		<li>
+			<abbr symbol="Tantalum">Ta</abbr>
+		</li>
+		<li>
+			<abbr symbol="Tungsten">W</abbr>
+		</li>
+		<li>
+			<abbr symbol="Rhenium">Re</abbr>
+		</li>
+		<li>
+			<abbr symbol="Osmium">Os</abbr>
+		</li> 
+		<li>
+			<abbr symbol="Iridium">Ir</abbr>
+		</li>
+		<li>
+			<abbr symbol="Platinum">Pt</abbr>
+		</li>
+		<li>
+			<abbr symbol="Gold">Au</abbr>
+		</li>
+		<li>
+			<abbr symbol="Mercury">Hg</abbr>
+		</li>
+		<li>
+			<abbr symbol="Thallium">Tl</abbr>
+		</li>
+		<li>
+			<abbr symbol="Lead">Pb</abbr>
+		</li>
+		<li>
+			<abbr symbol="Bismuth">Bi</abbr>
+		</li>
+		<li>
+			<abbr symbol="Polonium">Po</abbr>
+		</li>
+		<li class="metalloid">
+			<abbr symbol="Astatine">At</abbr>
+		</li>
+		<li class="noble-gas">
+			<abbr symbol="Radon">Rn</abbr>
+		</li>
+		<li class="alkali">
+			<abbr symbol="Francium">Fr</abbr>
+		</li>
+		<li class="alkaline">
+			<abbr symbol="Radium">Ra</abbr>
+		</li>
+		<li class="actinide">
+			<abbr symbol="Actinium">Ac</abbr>
+		</li>
+		<li class="actinide" id="thorium" >
+			<abbr symbol="Thorium">Th</abbr>
+		</li>
+		<li class="actinide">
+			<abbr symbol="Protactinium">Pa</abbr>
+		</li>
+		<li class="actinide">
+			<abbr symbol="Uranium">U</abbr>
+		</li>
+		<li class="actinide">
+			<abbr symbol="Neptunium">Np</abbr>
+		</li>
+		<li class="actinide">
+			<abbr symbol="Plutonium">Up</abbr>
+		</li>
+		<li class="actinide">
+			<abbr symbol="Americium">Am</abbr>
+		</li>
+		<li class="actinide">
+			<abbr symbol="Curium">Cm</abbr>
+		</li>
+		<li class="actinide">
+			<abbr symbol="Berkelium">Bk</abbr>
+		</li>
+		<li class="actinide">
+			<abbr symbol="Californium">Cf</abbr>
+		</li>
+		<li class="actinide">
+			<abbr symbol="Einsteinium">Es</abbr>
+		</li>
+		<li class="actinide">
+			<abbr symbol="Fermium">Fm</abbr>
+		</li>
+		<li class="actinide">
+			<abbr symbol="Mendelevium">Md</abbr>
+		</li>
+		<li class="actinide">
+			<abbr symbol="Nobelium">No</abbr>
+		</li>
+		<li class="actinide">
+			<abbr symbol="Lawrencium">Lr</abbr>
+		</li>
+		<li id="rutherfordium">
+			<abbr symbol="Rutherfordium">Rf</abbr>
+		</li>
+		<li>
+			<abbr symbol="Dubnium">Db</abbr>
+		</li>
+		<li>
+			<abbr symbol="Seaborgium">Sg</abbr>
+		</li>
+		<li>
+			<abbr symbol="Bohrium">Bh</abbr>
+		</li>
+		<li>
+			<abbr symbol="Hassium">Hs</abbr>
+		</li>
+		<li class="unknown">
+			<abbr symbol="Meitnerium">Mt</abbr>
+		</li>
+		<li class="unknown">
+			<abbr symbol="Darmstadtium">Ds</abbr>
+		</li>
+		<li class="unknown">
+			<abbr symbol="Roentgenium">Rg</abbr>
+		</li>
+		<li>
+			<abbr symbol="Copernicium">Cn</abbr>
+		</li>
+		<li class="unknown">
+			<abbr symbol="Nihonium">Cn</abbr>
+		</li>
+		<li class="unknown">
+			<abbr symbol="Flerovium">Fl</abbr>
+		</li>
+		<li class="unknown">
+			<abbr symbol="Moscovium">Mc</abbr>
+		</li>
+		<li class="unknown">
+			<abbr symbol="Livermorium">Lv</abbr>
+		</li>
+		<li class="unknown">
+			<abbr symbol="Tennessine">Ts</abbr>
+		</li>
+		<li class="unknown">
+			<abbr symbol="Oganesson">Og</abbr>
+		</li>
+		</ol>
+	</o>
+	<footer>
+		<p>© vinguyen 2020</p>
+	</footer>
+</body>
+
+<html>
+

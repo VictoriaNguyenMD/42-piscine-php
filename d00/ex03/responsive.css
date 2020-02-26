@@ -1,0 +1,96 @@
+
+/*responsive.css*/
+
+body {
+    background-color: #000000;
+    overflow: hidden;
+}
+
+table {
+    width: 90%;
+    margin: auto auto;
+}
+
+footer {
+    color: #ffffff;
+    font-family: monospace;
+    font-style: italic;
+    font-size: 1vw;
+    text-align: right;
+}
+
+.responsive_image
+{
+    width: auto;
+    height: 3vw;
+}
+
+.element {
+    text-align: center;
+    font-size: 2vw;
+    font-weight: bold;
+    margin: 1vh;
+}
+
+.atomic_mass {
+    text-align: right;
+    font-size: 1vw;
+    margin: 0;
+}
+
+.atomic_num {
+    text-align: left;
+    font-size: 1vw;
+    margin: 0;
+}
+
+.empty {
+    height: 2vh;
+    border: none;
+}
+
+.nan {
+    background-color: #DDDDDD
+}
+
+.Actinide {
+    background-color: #B388EB
+}
+
+.Alkali_Metal {
+    background-color: #FAA1FF
+}
+
+.Alkaline_Earth_Metal {
+    background-color: #FDC5F5
+}
+
+.Halogen {
+    background-color: #a3b2fb
+}
+
+.Lanthanide {
+    background-color: #72DDF7
+}
+
+.Metal {
+    background-color: #CDEDF6
+}
+
+.Metalloid {
+    background-color: #84CAE7
+}
+
+.Noble_Gas {
+    background-color: #6794bd
+}
+
+.Nonmetal {
+    background-color: #96CDFF 
+} 
+
+.Transition_Metal
+{
+    background-color: #D8E1FF
+}
+       
