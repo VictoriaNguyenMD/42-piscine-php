@@ -1,6 +1,7 @@
 #!/usr/bin/php
 <?php
 if ($argc >= 2) {
+	date_default_timezone_set("Europe/Paris");
 	$regex = "/^(\w+)\s([0-9]{1,2})\s(\w+)\s([0-9]{4})\s((?:[0-1]?[0-9])|(?:2[0-3])):([0-5][0-9]):([0-5][0-9])$/i";
 	if (preg_match($regex, $argv[1], $matches)){
 		$dict_dates = array_flip (array ("janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"));
