@@ -1,0 +1,5 @@
+rm private/passwd
+curl -d login=toto1 -d passwd=titi1 -d submit=OK 'localhost:3000/ex01/create.php'
+more private/passwd
+curl -d login=toto1 -d passwd=titi1 -d submit=OK 'localhost:3000/ex01/create.php'
+curl -d login=toto2 -d passwd= -d submit=OK 'localhost:3000/ex01/create.php'
