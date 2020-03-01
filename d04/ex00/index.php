@@ -10,6 +10,6 @@ if ($_GET["submit"] === "OK") {
 	Username: <input type="text" name="login" value="<?php echo $_SESSION["login"]; ?>" />
 	<br />
 	Password: <input type="password" name="passwd" value="<?php echo $_SESSION["passwd"]; ?>" />
-	<input type="submit" name"submit" value="OK" />
+	<input type="submit" name="submit" value="OK" />
 </form>
 </body></html>
