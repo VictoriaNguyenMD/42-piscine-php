@@ -1,1 +1,1 @@
-CREATE DATABASE  db_vinguyen;
+CREATE DATABASE IF NOT EXISTS db_vinguyen;
