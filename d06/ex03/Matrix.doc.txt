@@ -1,0 +1,22 @@
+
+<- Matrix ----------------------------------------------------------------------
+The Vector class handles x,y,z coordinates in space and corresponding attributes.
+
+An instance can be contructed from an array containing 2 keys:
+new Vector( array( 'dest' => val, 'orig' => (x,y z)) );
+
+’dest’: the vector’s destination vertex, mandatory.
+’orig’: the vector’s origin vertex, optional, by default is worth a new instance of
+the x=0, y=0, z=0, w=1 vertex.
+
+Any other use is undefined behaviour.
+
+The class can be converte to verbose using Vertex::$verbose = True;
+
+The class provides the following methods :
+
+Vector   float magnitude();
+Returns the vector’s length (or "norm")
+
+
+----------------------------------------------------------------------- Matrix ->
