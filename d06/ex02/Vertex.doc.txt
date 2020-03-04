@@ -1,0 +1,50 @@
+
+<- Vertex ----------------------------------------------------------------------
+The Vertex class handles x,y,z coordinates in space and corresponding attribtes.
+
+An instance can be contructed from an array containing 5 keys:
+new Vertex( array( 'x' => 0, 'y' => 0, 'z' => 0, 'w' => 0, 'color' => white) );
+
+’x’: x axis coordinate, mandatory.
+’y’: y axis coordinate, mandatory.
+’z’: z axis coordinate, mandatory.
+’w’: optional, by default is worth 1.0.
+’color’: optional, by default is worth a new instance of the color white.
+
+Any other use is undefined behaviour.
+
+The class can be converte to verbose using Vertex::$verbose = True;
+
+The class provides the following methods :
+
+Vertex   get_x();
+Returns the x value.
+
+Vertex   set_x($x);
+Sets the x value.
+
+Vertex   get_y();
+Returns the y value.
+
+Vertex   set_y($y);
+Sets the y value.
+
+Vertex   get_z();
+Returns the z value.
+
+Vertex   set_z($z);
+Sets the z value.
+
+Vertex   get_w();
+Returns the w value.
+
+Vertex   set_w($w);
+Sets the w value.
+
+Vertex   get_color();
+Returns the color value.
+
+Vertex   set_color($color);
+Sets the color value.
+
+----------------------------------------------------------------------- Vertex ->
