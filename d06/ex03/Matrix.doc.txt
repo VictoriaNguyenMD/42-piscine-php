@@ -3,11 +3,28 @@
 The Vector class handles x,y,z coordinates in space and corresponding attributes.
 
 An instance can be contructed from an array containing 2 keys:
-new Vector( array( 'dest' => val, 'orig' => (x,y z)) );
+new Matrix( array( 'present' => val, 
+            'scale' => val, 
+            'angle' => array(x,y z),
+            'vtc' => val,
+            'fov' => val,
+            'ratio' => val,
+            'near' => val,
+            'far' => val) );
 
-’dest’: the vector’s destination vertex, mandatory.
-’orig’: the vector’s origin vertex, optional, by default is worth a new instance of
-the x=0, y=0, z=0, w=1 vertex.
+’preset’: the matrix type to, mandatory. The value must be one of the Class 
+constants previoulsy defined.
+
+’scale’: the scale factor, mandatory when ’preset’ is worth SCALE.
+
+’angle’: the rotation angle in radians, mandatory when ’preset’ is worth 
+RX, RY or RZ.
+
+’vtc’: translation vector, mandatory when ’preset’ is worth TRANSLATION.
+’fov’: projectionfieldofviewindegreesmandatorywhen’preset’isworthPROJECTION. 
+’ratio’: projected image ratio, mandatory when ’preset’ is worth PROJECTION. 
+’near’: projection’snearclippingplanemandatorywhen’preset’isworthPROJECTION. 
+’far’: projection’sfarclippingplanemandatorywhen’preset’isworthPROJECTION.
 
 Any other use is undefined behaviour.
 
@@ -15,8 +32,10 @@ The class can be converte to verbose using Vertex::$verbose = True;
 
 The class provides the following methods :
 
-Vector   float magnitude();
-Returns the vector’s length (or "norm")
+Matrix mult( Matrix $rhs ); 
+Returns the multiplication of both matrices. 
 
-
+Vertex transformVertex( Vertex $vtx );
+Returns a new vertex resulting from the transformation of the vertex by 
+the matrix.
 ----------------------------------------------------------------------- Matrix ->
