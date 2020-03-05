@@ -1,8 +1,8 @@
 
 <- Matrix ----------------------------------------------------------------------
-The Vector class handles x,y,z coordinates in space and corresponding attributes.
+The Matrix class handles 3D points.
 
-An instance can be contructed from an array containing 2 keys:
+An instance can be contructed from an array containing keys:
 new Matrix( array( 'present' => val, 
             'scale' => val, 
             'angle' => array(x,y z),
@@ -21,10 +21,10 @@ constants previoulsy defined.
 RX, RY or RZ.
 
 ’vtc’: translation vector, mandatory when ’preset’ is worth TRANSLATION.
-’fov’: projectionfieldofviewindegreesmandatorywhen’preset’isworthPROJECTION. 
+’fov’: projection field of view in degrees mandatory when ’preset’ is worth PROJECTION. 
 ’ratio’: projected image ratio, mandatory when ’preset’ is worth PROJECTION. 
-’near’: projection’snearclippingplanemandatorywhen’preset’isworthPROJECTION. 
-’far’: projection’sfarclippingplanemandatorywhen’preset’isworthPROJECTION.
+’near’: projection’s near clipping plane mandatory when ’preset’ is worth PROJECTION. 
+’far’: projection’s far clipping plane mandatory when ’preset’ is worth PROJECTION.
 
 Any other use is undefined behaviour.
 

@@ -1,4 +1,5 @@
 <?php
+require_once('Vertex.class.php');
 class Matrix {
     const IDENTITY = 'IDENTITY';
     const SCALE = 'SCALE';
@@ -19,12 +20,7 @@ class Matrix {
 
     public $data;
     public static $verbose = False;
-    public $matrix = [
-        [0.00, 0.00, 0.00, 0.00],
-        [0.00, 0.00, 0.00, 0.00],
-        [0.00, 0.00, 0.00, 0.00],
-        [0.00, 0.00, 0.00, 0.00],
-    ];
+    public $matrix;
 
     function __construct($data) {
         if (!isset($data['preset']) || 
@@ -58,15 +54,13 @@ class Matrix {
             $this->create_oxrotation($data);
         else if ($data['preset'] === self::RY)
             $this->create_oyrotation($data);
-        else if ($data['preset'] === self::RY)
-            $this->create_oyrotation($data);
+        else if ($data['preset'] === self::RZ)
+            $this->create_ozrotation($data);
     }
 
     function __destruct() {
-		if (self::$verbose && $data['preset'] === self::IDENTITY)
-            echo $this . " instance destructed" . "\n";
-        else if (self::$verbose && in_array($data['preset'], [self::IDENTITY, self::SCALE, self::RX, self::RY, self::RZ, self::TRANSLATION, self::PROJECTION]))
-            echo "Matrix " . $data['preset'] . " preset instance destructed" . "\n";
+		if (self::$verbose)
+            echo "Matrix instance destructed\n";
 	}
 
     function __toString() {
@@ -86,8 +80,7 @@ class Matrix {
         return file_get_contents('Matrix.doc.txt') . "\n";
     }
 
-    function create_identity(array $data)
-    {
+    function create_identity(array $data) {
         $this->matrix = ([
             [1.00, 0.00, 0.00, 0.00],
             [0.00, 1.00, 0.00, 0.00],
@@ -96,8 +89,7 @@ class Matrix {
         ]);
     }
 
-    function create_translation(array $data)
-    {
+    function create_translation(array $data) {
         $this->matrix = ([
             [1.00, 0.00, 0.00, $data['vtc']->get_x()],
             [0.00, 1.00, 0.00, $data['vtc']->get_y()],
@@ -106,8 +98,7 @@ class Matrix {
         ]);
     }
 
-    function create_scale(array $data)
-    {
+    function create_scale(array $data) {
         $this->matrix = ([
             [$data['scale'], 0.00, 0.00, 0.00],
             [0.00, $data['scale'], 0.00, 0.00],
@@ -116,8 +107,7 @@ class Matrix {
         ]);
     }
 
-    function create_oxrotation(array $data)
-    {
+    function create_oxrotation(array $data) {
         $this->matrix = [
             [1.00, 0.00, 0.00, 0.00],
             [0.00, cos($data['angle']), -sin($data['angle']), 0.00],
@@ -126,8 +116,7 @@ class Matrix {
         ];
     }
 
-    function create_oyrotation(array $data)
-    {
+    function create_oyrotation(array $data) {
         $this->matrix = [
             [cos($data['angle']), 0.00, sin($data['angle']), 0.00],
             [0.00, 1.00, 0.00, 0.00],
@@ -136,8 +125,7 @@ class Matrix {
         ];
     }
 
-    function create_ozrotation(array $data)
-    {
+    function create_ozrotation(array $data) {  
         $this->matrix = [
             [cos($data['angle']), -sin($data['angle']), 0.00, 0.00],
             [sin($data['angle']), cos($data['angle']), 0.00, 0.00],
@@ -146,46 +134,55 @@ class Matrix {
         ];
     }
 
-    function create_projection(array $data)
-    {
-        $this->matrix = $this->create_identity($data);
-        $matrix[1][1] = 1 / tan(0.5 * deg2rad($data['fov']));
-        $matrix[0][0] = $matrix[1][1] / $data['ratio'];
-        $matrix[2][2] = -1 * (-$data['near'] - $data['far']) / ($data['near'] - $data['far']);
-        $matrix[2][3] = (2 * $data['near'] * $data['far']) / ($data['near'] - $data['far']);
-        $matrix[3][2] = -1;
-        $matrix[3][3] = 0;
+    function create_projection(array $data) {
+        $test = ([
+            [0.00, 0.00, 0.00, 0.00],
+            [0.00, 0.00, 0.00, 0.00],
+            [0.00, 0.00, 0.00, 0.00],
+            [0.00, 0.00, -1.00, 0.00],
+        ]);
+        $test[0][0] = (1 / tan(0.5 * deg2rad($data['fov']))) / $data['ratio'];
+        $test[1][1] = 1 / tan(0.5 * deg2rad($data['fov']));
+        $test[2][2] = -1 * ($data['far'] + $data['near']) / ($data['far'] - $data['near']);
+        $test[2][3] = (-2 * $data['far'] * $data['near']) / ($data['far'] - $data['near']);
+        $this->matrix = $test;
     }
 
-    // private function _generateTranslationPreset(array $data)
-    // {
-    //     $this->_generateIdentityPreset($data);
-    //     $matrix = $this->get();
-    //     $matrix[0][3] = $data['vtc']->get_x();
-    //     $matrix[1][3] = $data['vtc']->get_y();
-    //     $matrix[2][3] = $data['vtc']->get_z();
-    //     $this->set($matrix);
-    // }
+    function mult(Matrix $rhs) {
+        $test = array();
 
-    // private function _generateProjectionPreset(array $data)
-    // {
-    //     $this->_generateIdentityPreset($data);
-    //     $matrix = $this->get();
-    //     $matrix[1][1] = 1 / tan(0.5 * deg2rad($data['fov']));
-    //     $matrix[0][0] = $matrix[1][1] / $data['ratio'];
-    //     $matrix[2][2] = -1 * (-$data['near'] - $data['far']) / ($data['near'] - $data['far']);
-    //     $matrix[2][3] = (2 * $data['near'] * $data['far']) / ($data['near'] - $data['far']);
-    //     $matrix[3][2] = -1;
-    //     $matrix[3][3] = 0;
-    //     $this->set($matrix);
-    // }
+        $test[0][0] = ($this->matrix[0][0] * $rhs->matrix[0][0]) + ($this->matrix[0][1] * $rhs->matrix[1][0]) + ($this->matrix[0][2] * $rhs->matrix[2][0]) + ($this->matrix[0][3] * $rhs->matrix[3][0]);
+        $test[0][1] = ($this->matrix[0][0] * $rhs->matrix[0][1]) + ($this->matrix[0][1] * $rhs->matrix[1][1]) + ($this->matrix[0][2] * $rhs->matrix[2][1]) + ($this->matrix[0][3] * $rhs->matrix[3][1]);
+        $test[0][2] = ($this->matrix[0][0] * $rhs->matrix[0][2]) + ($this->matrix[0][1] * $rhs->matrix[1][2]) + ($this->matrix[0][2] * $rhs->matrix[2][2]) + ($this->matrix[0][3] * $rhs->matrix[3][2]);
+        $test[0][3] = ($this->matrix[0][0] * $rhs->matrix[0][3]) + ($this->matrix[0][1] * $rhs->matrix[1][3]) + ($this->matrix[0][2] * $rhs->matrix[2][3]) + ($this->matrix[0][3] * $rhs->matrix[3][3]);
+  
+        $test[1][0] = ($this->matrix[1][0] * $rhs->matrix[0][0]) + ($this->matrix[1][1] * $rhs->matrix[1][0]) + ($this->matrix[1][2] * $rhs->matrix[2][0]) + ($this->matrix[1][3] * $rhs->matrix[3][0]); 
+        $test[1][1] = ($this->matrix[1][0] * $rhs->matrix[0][1]) + ($this->matrix[1][1] * $rhs->matrix[1][1]) + ($this->matrix[1][2] * $rhs->matrix[2][1]) + ($this->matrix[1][3] * $rhs->matrix[3][1]);
+        $test[1][2] = ($this->matrix[1][0] * $rhs->matrix[0][2]) + ($this->matrix[1][1] * $rhs->matrix[1][2]) + ($this->matrix[1][2] * $rhs->matrix[2][2]) + ($this->matrix[1][3] * $rhs->matrix[3][2]);
+        $test[1][3] = ($this->matrix[1][0] * $rhs->matrix[0][3]) + ($this->matrix[1][1] * $rhs->matrix[1][3]) + ($this->matrix[1][2] * $rhs->matrix[2][3]) + ($this->matrix[1][3] * $rhs->matrix[3][3]);
 
-    // public function set($matrix){
-    //     $this->matrix = $matrix;
-    // }
+        $test[2][0] = ($this->matrix[2][0] * $rhs->matrix[0][0]) + ($this->matrix[2][1] * $rhs->matrix[1][0]) + ($this->matrix[2][2] * $rhs->matrix[2][0]) + ($this->matrix[2][3] * $rhs->matrix[3][0]);
+        $test[2][1] = ($this->matrix[2][0] * $rhs->matrix[0][1]) + ($this->matrix[2][1] * $rhs->matrix[1][1]) + ($this->matrix[2][2] * $rhs->matrix[2][1]) + ($this->matrix[2][3] * $rhs->matrix[3][1]);
+        $test[2][2] = ($this->matrix[2][0] * $rhs->matrix[0][2]) + ($this->matrix[2][1] * $rhs->matrix[1][2]) + ($this->matrix[2][2] * $rhs->matrix[2][2]) + ($this->matrix[2][3] * $rhs->matrix[3][2]);
+        $test[2][3] = ($this->matrix[2][0] * $rhs->matrix[0][3]) + ($this->matrix[2][1] * $rhs->matrix[1][3]) + ($this->matrix[2][2] * $rhs->matrix[2][3]) + ($this->matrix[2][3] * $rhs->matrix[3][3]);
+        
+        $test[3][0] = ($this->matrix[3][0] * $rhs->matrix[0][0]) + ($this->matrix[3][1] * $rhs->matrix[1][0]) + ($this->matrix[3][2] * $rhs->matrix[2][0]) + ($this->matrix[3][3] * $rhs->matrix[3][0]);
+        $test[3][1] = ($this->matrix[3][0] * $rhs->matrix[0][1]) + ($this->matrix[3][1] * $rhs->matrix[1][1]) + ($this->matrix[3][2] * $rhs->matrix[2][1]) + ($this->matrix[3][3] * $rhs->matrix[3][1]);
+        $test[3][2] = ($this->matrix[3][0] * $rhs->matrix[0][2]) + ($this->matrix[3][1] * $rhs->matrix[1][2]) + ($this->matrix[3][2] * $rhs->matrix[2][2]) + ($this->matrix[3][3] * $rhs->matrix[3][2]);
+        $test[3][3] = ($this->matrix[3][0] * $rhs->matrix[0][3]) + ($this->matrix[3][1] * $rhs->matrix[1][3]) + ($this->matrix[3][2] * $rhs->matrix[2][3]) + ($this->matrix[3][3] * $rhs->matrix[3][3]);
+        $new_matrix = new Matrix(array('present' => 'IDENTITY'));
+        $new_matrix->matrix = $test;
+        return $new_matrix;
+    }
 
-    // function get(){
-    //     return $this->matrix;
-    // }
+    function transformVertex(Vertex $vtx) {
+        $x = (($vtx->get_x() * $this->matrix[0][0]) + ($vtx->get_y() * $this->matrix[0][1])  + ($vtx->get_z() * $this->matrix[0][2])  + ($vtx->get_w() * $this->matrix[0][3]) );
+        $y = (($vtx->get_x() * $this->$matrix[1][0]) + ($vtx->get_y() * $this->$matrix[1][1]) + ($vtx->get_z() * $this->$matrix[1][2]) + ($vtx->get_w() * $this->$matrix[1][3]) );
+        $z = (($vtx->get_x() * $this->$matrix[2][0]) + ($vtx->get_y() * $this->$matrix[2][1]) + ($vtx->get_z() * $this->$matrix[2][2]) + ($vtx->get_w() * $this->$matrix[2][3]) );
+        $w = (($vtx->get_x() * $this->$matrix[3][0]) + ($vtx->get_y() * $this->$matrix[3][1]) + ($vtx->get_z() * $this->$matrix[3][2]) + ($vtx->get_w() * $this->$matrix[3][3]) );
+        $color = $vtx->get_color();
+        $new_vertex = new Vertex(array('x' => $x, 'y' => $y, 'z' => $z, 'w' => $w, 'color' => $color));
+        return $new_vertex;
+    }
 }
 ?>
