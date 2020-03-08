@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Balloon</title>
+        <!--Adds the beginning style for the ballon--> 
+        <style>
+            div.balloon {
+                height: 200px;
+                width: 200px;
+                background-color: red;
+                border-radius: 50%;
+            }
+        </style>
+        <script>
+            var colors = ['#ff0000', '#00ff00', '#0000ff'];
+            var i = 0;
+            var balloon;
+            var current_size = 200;
+            
+            /* Sets event listeners that will then run the associated functions*/
+            function myFunctions(){
+                balloon = document.querySelector(".balloon");
+                balloon.addEventListener("click", balloonClick);
+                balloon.addEventListener("mouseleave", balloonMouse);
+            }
+
+            /*Changes the balloon properties*/
+            function update(i){
+                balloon.style.height = current_size + 'px';
+                balloon.style.width = current_size + 'px';
+                balloon.style.backgroundColor = colors[i];
+            }
+
+            /*Increasing the balloon by 10px on each click
+            If the balloon is > 420px, resets balloon size.
+            s changed from red->gree->blue->red...*/
+            function balloonClick() {
+                current_size += 10;
+                if (current_size > 420)
+                    current_size = 200;
+                i++;
+                if (i > 2)
+                    i = 0;
+                update(i);
+            }
+
+            /*Shrinks balloon by 5px when the mouse is in the balloon and leaves it.
+            Balloon size cannot be lower than 200px.
+            Colors change in reverse order*/
+            function balloonMouse(){
+                current_size -= 5;
+                if (current_size < 200)
+                    current_size = 200;
+                i--;
+                if (i < 0)
+                    i = 2;
+                update(i);
+            }
+        </script>
+    </head>
+    <body onload="myFunctions()">
+        <div class="balloon"></div>
+    </body>
+</html>
+	
