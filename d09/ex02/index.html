@@ -1,0 +1,97 @@
+<!doctype html>>
+<head>
+    <title>To Do List</title>
+    <script src="todo.js"></script>
+    <style>
+        body {
+            line-height: 1.4em;
+            background-color: black;
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            position: absolute;
+            top: -100px;
+            width: 100%;
+            font-size: 70px;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        .todos {
+            width:500px;
+            background-color: white;
+            margin:150px auto 0 auto;
+            position: absolute;
+        }
+
+        .todos:before{
+            content: '';
+            width:500px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 15px;
+            z-index: 2;
+            border-bottom: 1px solid #6c615c;
+            background: grey;
+            border-top-left-radius: 1px;
+            border-top-right-radius: 1px;
+        }
+
+        #ft_list{
+            margin-top:15px;
+            font-size: 24px;
+        }
+
+        #ft_list:before {
+            content: '';
+            width: 2px;
+            position: absolute;
+            top: 0;
+            left: 40px;
+            height: 100%;
+        }
+
+        #ft_list div{
+            padding:10px 40px 10px 60px;
+            line-height: 40px;
+            border-bottom: 1px dotted grey;
+            position: relative;
+        }
+
+        #ft_list div:hover:after{
+            content:'x';
+            right: 15px;
+            position:absolute;
+            color: grey;
+        }
+
+        #ft_list div:before{
+            content:'➔';
+            left: 10px;
+            position:absolute;
+            color: black;
+        }
+
+        button{
+            width:100%;
+            background-color: white;
+            border:0px solid grey;
+            font-size:30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="todos">
+        <h1>TODO List</h1>
+        <div id="ft_list"></div>
+        <button id="new">New</button>
+    </div>
+</body>
+</html>
